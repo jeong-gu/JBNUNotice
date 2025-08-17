@@ -261,12 +261,74 @@ def build_jbnu_detail_href(id_str: str, base_url: str, list_url: str | None) -> 
     detail_path = f"/web/Board/{board_id}/detailView.do{q}"
     return urljoin(base_url, detail_path)
 
+# --- 소중대 전용: div.info 우선 + program_id 폴백 ---
+import hashlib
+from urllib.parse import urlparse, parse_qs, urljoin
+import re
+from bs4 import BeautifulSoup
+
+def parse_swuniv_items(html: str, base_url: str, list_url: str | None = None):
+    import hashlib, re
+    from urllib.parse import urlparse, parse_qs, urljoin
+    from bs4 import BeautifulSoup
+
+    soup = BeautifulSoup(html, "lxml")
+    items, seen = [], set()
+    
+    # 1) a만 넓게 수집 (program_id 포함)
+    anchors = soup.select('a[href*="program_id="]')
+
+    for a in anchors:
+        href_raw = (a.get("href") or "").strip()
+        if not href_raw:
+            continue
+        href = urljoin(base_url, href_raw)
+
+        # ID: psin_id > program_id > 경로 숫자 > 해시
+        p = urlparse(href); qs = parse_qs(p.query)
+        article_id = qs.get("psin_id", [None])[0] or qs.get("program_id", [None])[0]
+        if not article_id:
+            mnum = re.search(r"(\d{3,})", p.path)
+            if mnum: article_id = mnum.group(1)
+        if not article_id:
+            article_id = hashlib.md5(href.encode("utf-8")).hexdigest()[:10]
+
+        if article_id in seen:
+            continue
+        seen.add(article_id)
+
+        # 2) 핵심: a 밑의 div.info > div.tit만 추출
+        info_div = a.find("div", class_="info")  # a의 하위에서 탐색
+        tit_div  = info_div.find("div", class_="tit") if info_div else None
+
+        # tit만 읽기 (없으면 폴백: 앵커 텍스트)
+        title = (tit_div.get_text(" ", strip=True)
+                 if tit_div else (a.get_text(" ", strip=True) or "(제목 없음)"))
+
+        items.append({
+            "article_id": article_id,
+            "title": title,   # ← div.info > div.tit의 텍스트만
+            "href": href,
+            "date": "",       # 메일 템플릿 호환 위해 빈 값 유지
+        })
+
+    # 중복 제거
+    return list({it["article_id"]: it for it in items}.values())
+
+
+
 def parse_items(html: str, article_href_re: re.Pattern, base_url: str, list_url: str | None = None):
     """
     목록 HTML에서 (article_id, title, href, date_text)를 추출합니다.
     - a[href="javascript:;"] + onclick="pf_DetailMove('NNN')" 패턴 지원
     - 일반 href에 대한 정규식 매칭도 지원(search)
     """
+    host = (urlparse(base_url).hostname or "").lower()
+
+    # ★ 소중대 도메인이면 전용 파서 사용
+    if host.endswith("swuniv.jbnu.ac.kr"):
+        return parse_swuniv_items(html, base_url, list_url)
+    
     soup = BeautifulSoup(html, "lxml")
     items = []
 
