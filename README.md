@@ -8,3 +8,10 @@
 - https://www.jbnu.ac.kr/
 - https://csai.jbnu.ac.kr
 - https://swuniv.jbnu.ac.kr
+
+## 사용방법
+
+- .env.example 양식으로 .env파일을 작성해야합니다.
+- .env.example의 SMTP_USER, SMTP_PASS, MAIL_FROM, MAIL_TO를 수정해야합니다.
+- SMTP_PASS는  Gmail 앱 비밀번호(2단계 인증 후 발급)를 입력해야 합니다.
+- MAIL_TO에 여러 메일 주소를 추가하여 여러 대상에게 메일을 보낼 수 있습니다.
