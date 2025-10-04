@@ -17,4 +17,6 @@
 - MAIL_TO에 여러 메일 주소를 추가하여 여러 대상에게 메일을 보낼 수 있습니다.
 
 ## cron 매크로 설정 명령어(ex. 4시간마다 프로그램 실행)
-0 */4 * * * cd /home/ubuntu/JBNUNotice && /home/ubuntu/JBNUNotice/venv/bin/python3 notice_mailer.py >> /home/ubuntu/JBNUNotice/cron.log 2>&1
+- crontab -e
+
+- 0 */4 * * * cd /home/ubuntu/JBNUNotice && /home/ubuntu/JBNUNotice/venv/bin/python3 notice_mailer.py >> /home/ubuntu/JBNUNotice/cron.log 2>&1
