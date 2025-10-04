@@ -15,3 +15,6 @@
 - SMTP_USER, SMTP_PASS, MAIL_FROM, MAIL_TO를 수정해야합니다.
 - SMTP_PASS는  Gmail 앱 비밀번호(2단계 인증 후 발급)를 입력해야 합니다.
 - MAIL_TO에 여러 메일 주소를 추가하여 여러 대상에게 메일을 보낼 수 있습니다.
+
+## cron 매크로 설정 명령어(ex. 4시간마다 프로그램 실행)
+0 */4 * * * cd /home/ubuntu/JBNUNotice && /home/ubuntu/JBNUNotice/venv/bin/python3 notice_mailer.py >> /home/ubuntu/JBNUNotice/cron.log 2>&1

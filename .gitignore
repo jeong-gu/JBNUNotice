@@ -2,3 +2,4 @@
 seen.sqlite
 .env
 test.py
+venv
