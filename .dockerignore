@@ -1,0 +1,13 @@
+# 민감 정보 및 로컬 설정 파일
+.env
+.env.example
+.gitignore
+
+# 로컬에서 관리할 로그 및 DB 파일 (볼륨 마운트 예정)
+cron.log
+seen.sqlite
+
+# 가상 환경 및 Python 캐시
+venv/
+__pycache__/
+*.pyc

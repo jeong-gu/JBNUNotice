@@ -32668,3 +32668,20 @@ requests.exceptions.ReadTimeout: HTTPSConnectionPool(host='csai.jbnu.ac.kr', por
 [2025-10-04 20:00:15] [fetch] swuniv.jbnu.ac.kr page=3 -> https://swuniv.jbnu.ac.kr/main/jbnusw?gc=Program&page=3
 [2025-10-04 20:00:15] [swuniv] 파싱된 항목: 30건
 [2025-10-04 20:00:15] [swuniv] 신규 공지 없음.
+/bin/sh: 1: /home/ubuntu/JBNUNotice/venv/bin/python3: not found
+/bin/sh: 1: /home/ubuntu/JBNUNotice/venv/bin/python3: not found
+/bin/sh: 1: /home/ubuntu/JBNUNotice/venv/bin/python3: not found
+/bin/sh: 1: /home/ubuntu/JBNUNotice/venv/bin/python3: not found
+/bin/sh: 1: /home/ubuntu/JBNUNotice/venv/bin/python3: not found
+/bin/sh: 1: /home/ubuntu/JBNUNotice/venv/bin/python3: not found
+/bin/sh: 1: /home/ubuntu/JBNUNotice/venv/bin/python3: not found
+/bin/sh: 1: /home/ubuntu/JBNUNotice/venv/bin/python3: not found
+/bin/sh: 1: /home/ubuntu/JBNUNotice/venv/bin/python3: not found
+/bin/sh: 1: /home/ubuntu/JBNUNotice/venv/bin/python3: not found
+/bin/sh: 1: /home/ubuntu/JBNUNotice/venv/bin/python3: not found
+/bin/sh: 1: /home/ubuntu/JBNUNotice/venv/bin/python3: not found
+/bin/sh: 1: /home/ubuntu/JBNUNotice/venv/bin/python3: not found
+/bin/sh: 1: /home/ubuntu/JBNUNotice/venv/bin/python3: not found
+/bin/sh: 1: /home/ubuntu/JBNUNotice/venv/bin/python3: not found
+/bin/sh: 1: /home/ubuntu/JBNUNotice/venv/bin/python3: not found
+/bin/sh: 1: /home/ubuntu/JBNUNotice/venv/bin/python3: not found

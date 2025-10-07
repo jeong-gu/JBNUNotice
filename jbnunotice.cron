@@ -1,0 +1,3 @@
+# 4시간마다 notice_mailer.py를 실행하고 로그를 cron.log로 리다이렉션합니다.
+0 */4 * * * /bin/sh -c '. /app/cron_env.sh && cd /app && /usr/local/bin/python3 notice_mailer.py >> /app/cron.log 2>&1'
+# 마지막에 반드시 한 줄 띄어쓰기를 해주세요.
